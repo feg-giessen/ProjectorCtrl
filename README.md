@@ -1,6 +1,8 @@
 ProjectorCtrl
 =============
 
+(Kudos to [Christoph Schäfer](http://christoph-nils.de/))
+
 Hardware and software for controlling an Epson EMP-TW700 projector.
 
 ![](Front.jpg)
