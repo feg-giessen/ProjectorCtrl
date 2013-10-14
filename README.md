@@ -7,7 +7,7 @@ Hardware and software for controlling an Epson EMP-TW700 projector.
 Front plate
 
 ![](Front2.jpg)
-Front plate wireing
+Front plate wiring
 
 ![](Mainboard.jpg)
 Main board
