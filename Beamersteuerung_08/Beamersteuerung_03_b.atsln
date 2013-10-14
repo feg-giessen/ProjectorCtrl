@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Beamersteuerung_03_b", "Beamersteuerung_03_b\Beamersteuerung_03_b.cproj", "{787AB955-A47E-4D6B-B1BC-6A5009E9CC5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{787AB955-A47E-4D6B-B1BC-6A5009E9CC5E}.Debug|AVR.ActiveCfg = Debug|AVR
+		{787AB955-A47E-4D6B-B1BC-6A5009E9CC5E}.Debug|AVR.Build.0 = Debug|AVR
+		{787AB955-A47E-4D6B-B1BC-6A5009E9CC5E}.Release|AVR.ActiveCfg = Release|AVR
+		{787AB955-A47E-4D6B-B1BC-6A5009E9CC5E}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

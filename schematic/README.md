@@ -1,0 +1,5 @@
+Schematic
+=============
+
+![](Schaltplan.png)
+Schematic

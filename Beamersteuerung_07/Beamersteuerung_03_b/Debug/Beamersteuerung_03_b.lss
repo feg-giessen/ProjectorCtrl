@@ -1,0 +1,729 @@
+
+Beamersteuerung_03_b.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000322  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000072  00800060  00000322  000003b6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  008000d2  008000d2  00000428  2**0
+                  ALLOC
+  3 .stab         00000750  00000000  00000000  00000428  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      000000e7  00000000  00000000  00000b78  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000080  00000000  00000000  00000c60  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000005cd  00000000  00000000  00000ce0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000022c  00000000  00000000  000012ad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000003ed  00000000  00000000  000014d9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000f0  00000000  00000000  000018c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000001e9  00000000  00000000  000019b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000029b  00000000  00000000  00001ba1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	5b c1       	rjmp	.+694    	; 0x2c4 <__vector_6>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e2 e2       	ldi	r30, 0x22	; 34
+  3a:	f3 e0       	ldi	r31, 0x03	; 3
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a2 3d       	cpi	r26, 0xD2	; 210
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	a2 ed       	ldi	r26, 0xD2	; 210
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a3 3d       	cpi	r26, 0xD3	; 211
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	65 d0       	rcall	.+202    	; 0x124 <main>
+  5a:	61 c1       	rjmp	.+706    	; 0x31e <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <uart_init>:
+volatile uint8_t flag_1ms;
+
+void uart_init(void)
+{
+	
+	UBRRH = UBRR_VAL >> 8;
+  5e:	10 bc       	out	0x20, r1	; 32
+	UBRRL = UBRR_VAL & 0xFF;
+  60:	87 e6       	ldi	r24, 0x67	; 103
+  62:	89 b9       	out	0x09, r24	; 9
+	
+	UCSRB |= (1<<TXEN);                        // UART TX einschalten
+  64:	53 9a       	sbi	0x0a, 3	; 10
+	UCSRC = (1<<URSEL)|(1<<UCSZ1)|(1<<UCSZ0);  // Asynchron 8N1
+  66:	86 e8       	ldi	r24, 0x86	; 134
+  68:	80 bd       	out	0x20, r24	; 32
+	UCSRB |= (1<<RXEN);                        // UART RX einschalten
+  6a:	54 9a       	sbi	0x0a, 4	; 10
+	//UCSRB |= (1<<RXCIE);                        // UART RX Interrupt einschalten
+}
+  6c:	08 95       	ret
+
+0000006e <uart_getc>:
+
+uint8_t uart_getc(void)
+{
+	while (!(UCSRA & (1<<RXC)))   // warten bis Zeichen verfuegbar
+  6e:	5f 9b       	sbis	0x0b, 7	; 11
+  70:	fe cf       	rjmp	.-4      	; 0x6e <uart_getc>
+	;
+	return UDR;                   // Zeichen aus UDR an Aufrufer zurueckgeben
+  72:	8c b1       	in	r24, 0x0c	; 12
+}
+  74:	08 95       	ret
+
+00000076 <uart_gets>:
+
+void uart_gets( char* Buffer, uint8_t MaxLen )
+{
+  76:	cf 92       	push	r12
+  78:	df 92       	push	r13
+  7a:	ff 92       	push	r15
+  7c:	0f 93       	push	r16
+  7e:	1f 93       	push	r17
+  80:	cf 93       	push	r28
+  82:	df 93       	push	r29
+  84:	8c 01       	movw	r16, r24
+  86:	c6 2e       	mov	r12, r22
+	cli(); // Interrupts abschalten
+  88:	f8 94       	cli
+	flag_1ms=0;
+  8a:	10 92 d2 00 	sts	0x00D2, r1
+	uint8_t NextChar;
+	uint8_t StringLen = 0;
+	
+	NextChar = uart_getc();         // Warte auf und empfange das nächste Zeichen
+  8e:	ef df       	rcall	.-34     	; 0x6e <uart_getc>
+	
+	// Sammle solange Zeichen, bis:
+	// * entweder das String Ende Zeichen kam // Beim Beamer Epson TW-Serie ist das Ende Zeichen ":" 
+	// * oder das aufnehmende Array voll ist
+	//while( NextChar != '\r' &&  NextChar != '\n' && NextChar != ':' && StringLen < MaxLen - 1 ) {
+	while(  NextChar != ':' && StringLen < MaxLen - 1 ) {
+  90:	8a 33       	cpi	r24, 0x3A	; 58
+  92:	a9 f0       	breq	.+42     	; 0xbe <uart_gets+0x48>
+  94:	dd 24       	eor	r13, r13
+  96:	08 94       	sec
+  98:	c1 08       	sbc	r12, r1
+  9a:	d1 08       	sbc	r13, r1
+  9c:	1c 14       	cp	r1, r12
+  9e:	1d 04       	cpc	r1, r13
+  a0:	74 f4       	brge	.+28     	; 0xbe <uart_gets+0x48>
+  a2:	f0 2e       	mov	r15, r16
+  a4:	c0 2f       	mov	r28, r16
+  a6:	d1 2f       	mov	r29, r17
+		*Buffer++ = NextChar;
+  a8:	89 93       	st	Y+, r24
+  aa:	8e 01       	movw	r16, r28
+		StringLen++;
+		NextChar = uart_getc();
+  ac:	e0 df       	rcall	.-64     	; 0x6e <uart_getc>
+	
+	// Sammle solange Zeichen, bis:
+	// * entweder das String Ende Zeichen kam // Beim Beamer Epson TW-Serie ist das Ende Zeichen ":" 
+	// * oder das aufnehmende Array voll ist
+	//while( NextChar != '\r' &&  NextChar != '\n' && NextChar != ':' && StringLen < MaxLen - 1 ) {
+	while(  NextChar != ':' && StringLen < MaxLen - 1 ) {
+  ae:	8a 33       	cpi	r24, 0x3A	; 58
+  b0:	31 f0       	breq	.+12     	; 0xbe <uart_gets+0x48>
+	while (!(UCSRA & (1<<RXC)))   // warten bis Zeichen verfuegbar
+	;
+	return UDR;                   // Zeichen aus UDR an Aufrufer zurueckgeben
+}
+
+void uart_gets( char* Buffer, uint8_t MaxLen )
+  b2:	2c 2f       	mov	r18, r28
+  b4:	2f 19       	sub	r18, r15
+	
+	// Sammle solange Zeichen, bis:
+	// * entweder das String Ende Zeichen kam // Beim Beamer Epson TW-Serie ist das Ende Zeichen ":" 
+	// * oder das aufnehmende Array voll ist
+	//while( NextChar != '\r' &&  NextChar != '\n' && NextChar != ':' && StringLen < MaxLen - 1 ) {
+	while(  NextChar != ':' && StringLen < MaxLen - 1 ) {
+  b6:	30 e0       	ldi	r19, 0x00	; 0
+  b8:	2c 15       	cp	r18, r12
+  ba:	3d 05       	cpc	r19, r13
+  bc:	ac f3       	brlt	.-22     	; 0xa8 <uart_gets+0x32>
+		NextChar = uart_getc();
+	}
+	
+	// Noch ein '\0' anhängen um einen Standard
+	// C-String daraus zu machen
+	*Buffer = '\0';
+  be:	f8 01       	movw	r30, r16
+  c0:	10 82       	st	Z, r1
+	sei(); // Interrupts wieder einschalten
+  c2:	78 94       	sei
+}
+  c4:	df 91       	pop	r29
+  c6:	cf 91       	pop	r28
+  c8:	1f 91       	pop	r17
+  ca:	0f 91       	pop	r16
+  cc:	ff 90       	pop	r15
+  ce:	df 90       	pop	r13
+  d0:	cf 90       	pop	r12
+  d2:	08 95       	ret
+
+000000d4 <uart_putc>:
+
+int uart_putc(unsigned char c)
+{
+	while (!(UCSRA & (1<<UDRE)))  /* warten bis Senden moeglich */
+  d4:	5d 9b       	sbis	0x0b, 5	; 11
+  d6:	fe cf       	rjmp	.-4      	; 0xd4 <uart_putc>
+	{
+	}
+	UDR = c;                      /* sende Zeichen */
+  d8:	8c b9       	out	0x0c, r24	; 12
+	return 0;
+}
+  da:	80 e0       	ldi	r24, 0x00	; 0
+  dc:	90 e0       	ldi	r25, 0x00	; 0
+  de:	08 95       	ret
+
+000000e0 <uart_puts>:
+
+void uart_puts (char *s)
+{
+  e0:	cf 93       	push	r28
+  e2:	df 93       	push	r29
+  e4:	ec 01       	movw	r28, r24
+	while (*s)
+  e6:	88 81       	ld	r24, Y
+  e8:	88 23       	and	r24, r24
+  ea:	29 f0       	breq	.+10     	; 0xf6 <uart_puts+0x16>
+	}
+	UDR = c;                      /* sende Zeichen */
+	return 0;
+}
+
+void uart_puts (char *s)
+  ec:	21 96       	adiw	r28, 0x01	; 1
+{
+	while (*s)
+	{   /* so lange *s != '\0' also ungleich dem "String-Endezeichen(Terminator)" */
+		uart_putc(*s);
+  ee:	f2 df       	rcall	.-28     	; 0xd4 <uart_putc>
+	return 0;
+}
+
+void uart_puts (char *s)
+{
+	while (*s)
+  f0:	89 91       	ld	r24, Y+
+  f2:	88 23       	and	r24, r24
+  f4:	e1 f7       	brne	.-8      	; 0xee <uart_puts+0xe>
+	{   /* so lange *s != '\0' also ungleich dem "String-Endezeichen(Terminator)" */
+		uart_putc(*s);
+		s++;
+	}
+}
+  f6:	df 91       	pop	r29
+  f8:	cf 91       	pop	r28
+  fa:	08 95       	ret
+
+000000fc <Timer_io_init>:
+void Timer_io_init(void)
+{
+  // Table 39 im Atmega8 Datenblatt
+  // Waveform generation mode: 
+  // Mode 9: PWM Phase and frequency correct
+  TCCR1A |= (0 << WGM11) | (1 << WGM10);
+  fc:	8f b5       	in	r24, 0x2f	; 47
+  fe:	81 60       	ori	r24, 0x01	; 1
+ 100:	8f bd       	out	0x2f, r24	; 47
+  TCCR1B |= (1 << WGM13) | (0 << WGM12);
+ 102:	8e b5       	in	r24, 0x2e	; 46
+ 104:	80 61       	ori	r24, 0x10	; 16
+ 106:	8e bd       	out	0x2e, r24	; 46
+ 
+  // Table 40 im Atmega8 Datenblatt
+  // Prescaler: clk/256
+  TCCR1B |= (1 << CS12)  | (0 << CS11)  | (0 << CS10);
+ 108:	8e b5       	in	r24, 0x2e	; 46
+ 10a:	84 60       	ori	r24, 0x04	; 4
+ 10c:	8e bd       	out	0x2e, r24	; 46
+       und Hochzählen von BOTTOM (=0) bis TOP (=OCR1A) zwischen 
+       den Interrupts
+  */
+ 
+#define DELAY (3125)//F_CPU /256 /2 / 10 = 0,1s
+  OCR1A = DELAY; 
+ 10e:	85 e3       	ldi	r24, 0x35	; 53
+ 110:	9c e0       	ldi	r25, 0x0C	; 12
+ 112:	9b bd       	out	0x2b, r25	; 43
+ 114:	8a bd       	out	0x2a, r24	; 42
+  TCNT1 = - DELAY; // Anlauf für 1. Interrupt verlängern
+ 116:	8b ec       	ldi	r24, 0xCB	; 203
+ 118:	93 ef       	ldi	r25, 0xF3	; 243
+ 11a:	9d bd       	out	0x2d, r25	; 45
+ 11c:	8c bd       	out	0x2c, r24	; 44
+ 
+  TIMSK = (1 << OCIE1A);
+ 11e:	80 e1       	ldi	r24, 0x10	; 16
+ 120:	89 bf       	out	0x39, r24	; 57
+}
+ 122:	08 95       	ret
+
+00000124 <main>:
+
+int main(void)
+{
+ 124:	cf 93       	push	r28
+ 126:	df 93       	push	r29
+ 128:	cd b7       	in	r28, 0x3d	; 61
+ 12a:	de b7       	in	r29, 0x3e	; 62
+ 12c:	2c 97       	sbiw	r28, 0x0c	; 12
+ 12e:	0f b6       	in	r0, 0x3f	; 63
+ 130:	f8 94       	cli
+ 132:	de bf       	out	0x3e, r29	; 62
+ 134:	0f be       	out	0x3f, r0	; 63
+ 136:	cd bf       	out	0x3d, r28	; 61
+	 // IOs initialisieren
+	 	  
+		DDRB = (0 << 0) | (0 << 1) | (0 << 2) | (0 << 3) | (0 << 4);
+ 138:	17 ba       	out	0x17, r1	; 23
+		PORTB  |= (1 << 0); // PB0 Pullup aktivieren
+ 13a:	c0 9a       	sbi	0x18, 0	; 24
+		PORTB  |= (1 << 1); // PB1 Pullup aktivieren
+ 13c:	c1 9a       	sbi	0x18, 1	; 24
+		PORTB  |= (1 << 2); // PB2 Pullup aktivieren
+ 13e:	c2 9a       	sbi	0x18, 2	; 24
+		PORTB  |= (1 << 3); // PB3 Pullup aktivieren
+ 140:	c3 9a       	sbi	0x18, 3	; 24
+		PORTB  |= (1 << 4); // PB4 Pullup aktivieren
+ 142:	c4 9a       	sbi	0x18, 4	; 24
+		DDRC = (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4);
+ 144:	8f e1       	ldi	r24, 0x1F	; 31
+ 146:	84 bb       	out	0x14, r24	; 20
+	 PORTC ^= 0x1C;
+ 148:	95 b3       	in	r25, 0x15	; 21
+ 14a:	8c e1       	ldi	r24, 0x1C	; 28
+ 14c:	98 27       	eor	r25, r24
+ 14e:	95 bb       	out	0x15, r25	; 21
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 150:	2f ef       	ldi	r18, 0xFF	; 255
+ 152:	31 ee       	ldi	r19, 0xE1	; 225
+ 154:	44 e0       	ldi	r20, 0x04	; 4
+ 156:	21 50       	subi	r18, 0x01	; 1
+ 158:	30 40       	sbci	r19, 0x00	; 0
+ 15a:	40 40       	sbci	r20, 0x00	; 0
+ 15c:	e1 f7       	brne	.-8      	; 0x156 <main+0x32>
+ 15e:	00 c0       	rjmp	.+0      	; 0x160 <main+0x3c>
+ 160:	00 00       	nop
+	 _delay_ms(100);
+	 PORTC ^= 0x1C;
+ 162:	95 b3       	in	r25, 0x15	; 21
+ 164:	89 27       	eor	r24, r25
+ 166:	85 bb       	out	0x15, r24	; 21
+	
+	 // UART initialisieren
+	 uart_init();
+ 168:	7a df       	rcall	.-268    	; 0x5e <uart_init>
+	 // Timer initialisieren
+	 Timer_io_init();
+ 16a:	c8 df       	rcall	.-112    	; 0xfc <Timer_io_init>
+	 // Interrupts global freigeben
+	 sei();
+ 16c:	78 94       	sei
+	 uint8_t letzter_tasten_status;
+	 uint8_t aktuelle_tasten_veraenderung; // sinkende Flanke
+	 letzter_tasten_status = 0;
+	 aktuelle_tasten_veraenderung = 0;
+	 uint8_t x;
+	 x = 0;
+ 16e:	10 e0       	ldi	r17, 0x00	; 0
+	 Timer_io_init();
+	 // Interrupts global freigeben
+	 sei();
+	 uint8_t letzter_tasten_status;
+	 uint8_t aktuelle_tasten_veraenderung; // sinkende Flanke
+	 letzter_tasten_status = 0;
+ 170:	00 e0       	ldi	r16, 0x00	; 0
+	 char Line[12];
+	 // Endlose Hauptschleife
+    while(1)
+    {
+        //TODO:: Please write your application code 
+		if ((UCSRA & (1<<RXC))) //Empfangsdaten vorhanden
+ 172:	5f 9b       	sbis	0x0b, 7	; 11
+ 174:	46 c0       	rjmp	.+140    	; 0x202 <main+0xde>
+		{
+			uart_gets(Line,sizeof(Line));
+ 176:	ce 01       	movw	r24, r28
+ 178:	01 96       	adiw	r24, 0x01	; 1
+ 17a:	6c e0       	ldi	r22, 0x0C	; 12
+ 17c:	7c df       	rcall	.-264    	; 0x76 <uart_gets>
+			if (strcmp(Line , "PWR=02\r") == 0)
+ 17e:	ce 01       	movw	r24, r28
+ 180:	01 96       	adiw	r24, 0x01	; 1
+ 182:	60 e6       	ldi	r22, 0x60	; 96
+ 184:	70 e0       	ldi	r23, 0x00	; 0
+ 186:	c2 d0       	rcall	.+388    	; 0x30c <strcmp>
+ 188:	28 2f       	mov	r18, r24
+ 18a:	39 2f       	mov	r19, r25
+ 18c:	21 15       	cp	r18, r1
+ 18e:	31 05       	cpc	r19, r1
+ 190:	11 f4       	brne	.+4      	; 0x196 <main+0x72>
+			{
+				PORTC |= (1<<PC1);
+ 192:	a9 9a       	sbi	0x15, 1	; 21
+				PORTC &= ~(1<<PC0);
+ 194:	a8 98       	cbi	0x15, 0	; 21
+			}
+			if (strcmp(Line , "PWR=00\r") == 0)
+ 196:	ce 01       	movw	r24, r28
+ 198:	01 96       	adiw	r24, 0x01	; 1
+ 19a:	68 e6       	ldi	r22, 0x68	; 104
+ 19c:	70 e0       	ldi	r23, 0x00	; 0
+ 19e:	b6 d0       	rcall	.+364    	; 0x30c <strcmp>
+ 1a0:	28 2f       	mov	r18, r24
+ 1a2:	39 2f       	mov	r19, r25
+ 1a4:	21 15       	cp	r18, r1
+ 1a6:	31 05       	cpc	r19, r1
+ 1a8:	29 f4       	brne	.+10     	; 0x1b4 <main+0x90>
+			{
+				PORTC |= (1<<PC0);
+ 1aa:	a8 9a       	sbi	0x15, 0	; 21
+				PORTC &= ~(1<<PC1);
+ 1ac:	a9 98       	cbi	0x15, 1	; 21
+				
+				PORTC &= ~(1<<PC2);
+ 1ae:	aa 98       	cbi	0x15, 2	; 21
+				PORTC &= ~(1<<PC3);
+ 1b0:	ab 98       	cbi	0x15, 3	; 21
+				PORTC &= ~(1<<PC4);
+ 1b2:	ac 98       	cbi	0x15, 4	; 21
+			}
+			if (strcmp(Line , "SOURCE=30\r") == 0)
+ 1b4:	ce 01       	movw	r24, r28
+ 1b6:	01 96       	adiw	r24, 0x01	; 1
+ 1b8:	60 e7       	ldi	r22, 0x70	; 112
+ 1ba:	70 e0       	ldi	r23, 0x00	; 0
+ 1bc:	a7 d0       	rcall	.+334    	; 0x30c <strcmp>
+ 1be:	28 2f       	mov	r18, r24
+ 1c0:	39 2f       	mov	r19, r25
+ 1c2:	21 15       	cp	r18, r1
+ 1c4:	31 05       	cpc	r19, r1
+ 1c6:	19 f4       	brne	.+6      	; 0x1ce <main+0xaa>
+			{
+				PORTC |= (1<<PC2);
+ 1c8:	aa 9a       	sbi	0x15, 2	; 21
+				PORTC &= ~(1<<PC3);
+ 1ca:	ab 98       	cbi	0x15, 3	; 21
+				PORTC &= ~(1<<PC4);
+ 1cc:	ac 98       	cbi	0x15, 4	; 21
+			}
+			if (strcmp(Line , "SOURCE=21\r") == 0)
+ 1ce:	ce 01       	movw	r24, r28
+ 1d0:	01 96       	adiw	r24, 0x01	; 1
+ 1d2:	6b e7       	ldi	r22, 0x7B	; 123
+ 1d4:	70 e0       	ldi	r23, 0x00	; 0
+ 1d6:	9a d0       	rcall	.+308    	; 0x30c <strcmp>
+ 1d8:	28 2f       	mov	r18, r24
+ 1da:	39 2f       	mov	r19, r25
+ 1dc:	21 15       	cp	r18, r1
+ 1de:	31 05       	cpc	r19, r1
+ 1e0:	19 f4       	brne	.+6      	; 0x1e8 <main+0xc4>
+			{
+				PORTC |= (1<<PC3);
+ 1e2:	ab 9a       	sbi	0x15, 3	; 21
+				PORTC &= ~(1<<PC2);
+ 1e4:	aa 98       	cbi	0x15, 2	; 21
+				PORTC &= ~(1<<PC4);
+ 1e6:	ac 98       	cbi	0x15, 4	; 21
+			}
+			if (strcmp(Line , "SOURCE=41\r") == 0)
+ 1e8:	ce 01       	movw	r24, r28
+ 1ea:	01 96       	adiw	r24, 0x01	; 1
+ 1ec:	66 e8       	ldi	r22, 0x86	; 134
+ 1ee:	70 e0       	ldi	r23, 0x00	; 0
+ 1f0:	8d d0       	rcall	.+282    	; 0x30c <strcmp>
+ 1f2:	28 2f       	mov	r18, r24
+ 1f4:	39 2f       	mov	r19, r25
+ 1f6:	21 15       	cp	r18, r1
+ 1f8:	31 05       	cpc	r19, r1
+ 1fa:	19 f4       	brne	.+6      	; 0x202 <main+0xde>
+			{
+				PORTC |= (1<<PC4);
+ 1fc:	ac 9a       	sbi	0x15, 4	; 21
+				PORTC &= ~(1<<PC2);
+ 1fe:	aa 98       	cbi	0x15, 2	; 21
+				PORTC &= ~(1<<PC3);
+ 200:	ab 98       	cbi	0x15, 3	; 21
+			}
+		}
+		
+		if (flag_1ms) {
+ 202:	80 91 d2 00 	lds	r24, 0x00D2
+ 206:	88 23       	and	r24, r24
+ 208:	09 f4       	brne	.+2      	; 0x20c <main+0xe8>
+ 20a:	b3 cf       	rjmp	.-154    	; 0x172 <main+0x4e>
+					flag_1ms=0;
+ 20c:	10 92 d2 00 	sts	0x00D2, r1
+					if (x == 4) //abwechselnd Zustand AN/AUS und Quelle abfragen
+ 210:	14 30       	cpi	r17, 0x04	; 4
+ 212:	21 f4       	brne	.+8      	; 0x21c <main+0xf8>
+					{
+						uart_puts("PWR?\r");
+ 214:	81 e9       	ldi	r24, 0x91	; 145
+ 216:	90 e0       	ldi	r25, 0x00	; 0
+ 218:	63 df       	rcall	.-314    	; 0xe0 <uart_puts>
+ 21a:	0b c0       	rjmp	.+22     	; 0x232 <main+0x10e>
+					}
+					if (x == 8 && (PORTC & (1<<PC1)) )
+ 21c:	18 30       	cpi	r17, 0x08	; 8
+ 21e:	31 f4       	brne	.+12     	; 0x22c <main+0x108>
+ 220:	a9 9b       	sbis	0x15, 1	; 21
+ 222:	04 c0       	rjmp	.+8      	; 0x22c <main+0x108>
+					{
+						uart_puts("SOURCE?\r");
+ 224:	87 e9       	ldi	r24, 0x97	; 151
+ 226:	90 e0       	ldi	r25, 0x00	; 0
+ 228:	5b df       	rcall	.-330    	; 0xe0 <uart_puts>
+ 22a:	03 c0       	rjmp	.+6      	; 0x232 <main+0x10e>
+					}
+					if (x>9){
+ 22c:	1a 30       	cpi	r17, 0x0A	; 10
+ 22e:	08 f0       	brcs	.+2      	; 0x232 <main+0x10e>
+						x = 0;
+ 230:	10 e0       	ldi	r17, 0x00	; 0
+					}
+					x++;
+ 232:	1f 5f       	subi	r17, 0xFF	; 255
+					
+					aktuelle_tasten_veraenderung = (PINB ^ letzter_tasten_status) & (~PINB);
+ 234:	86 b3       	in	r24, 0x16	; 22
+ 236:	96 b3       	in	r25, 0x16	; 22
+ 238:	80 27       	eor	r24, r16
+ 23a:	09 2f       	mov	r16, r25
+ 23c:	00 95       	com	r16
+ 23e:	08 23       	and	r16, r24
+					if (aktuelle_tasten_veraenderung & (1 << PINB0)){ //OFF
+ 240:	00 ff       	sbrs	r16, 0
+ 242:	08 c0       	rjmp	.+16     	; 0x254 <main+0x130>
+						PORTC |= (1<<PC0);
+ 244:	a8 9a       	sbi	0x15, 0	; 21
+						PORTC &= ~(1<<PC1);
+ 246:	a9 98       	cbi	0x15, 1	; 21
+						
+						PORTC &= ~(1<<PC2);
+ 248:	aa 98       	cbi	0x15, 2	; 21
+						PORTC &= ~(1<<PC3);
+ 24a:	ab 98       	cbi	0x15, 3	; 21
+						PORTC &= ~(1<<PC4);
+ 24c:	ac 98       	cbi	0x15, 4	; 21
+						uart_puts("PWR OFF\r");
+ 24e:	80 ea       	ldi	r24, 0xA0	; 160
+ 250:	90 e0       	ldi	r25, 0x00	; 0
+ 252:	46 df       	rcall	.-372    	; 0xe0 <uart_puts>
+					}
+					if (aktuelle_tasten_veraenderung & (1 << PINB1)){ //ON
+ 254:	01 ff       	sbrs	r16, 1
+ 256:	05 c0       	rjmp	.+10     	; 0x262 <main+0x13e>
+						PORTC |= (1<<PC1);
+ 258:	a9 9a       	sbi	0x15, 1	; 21
+						PORTC &= ~(1<<PC0);
+ 25a:	a8 98       	cbi	0x15, 0	; 21
+						uart_puts("PWR ON\r");
+ 25c:	89 ea       	ldi	r24, 0xA9	; 169
+ 25e:	90 e0       	ldi	r25, 0x00	; 0
+ 260:	3f df       	rcall	.-386    	; 0xe0 <uart_puts>
+					}					
+					if (aktuelle_tasten_veraenderung & (1 << PINB2)  && (PORTC & (1<<PC1)) ){ //Source1
+ 262:	02 ff       	sbrs	r16, 2
+ 264:	08 c0       	rjmp	.+16     	; 0x276 <main+0x152>
+ 266:	a9 9b       	sbis	0x15, 1	; 21
+ 268:	06 c0       	rjmp	.+12     	; 0x276 <main+0x152>
+						PORTC |= (1<<PC2);
+ 26a:	aa 9a       	sbi	0x15, 2	; 21
+						PORTC &= ~(1<<PC3);
+ 26c:	ab 98       	cbi	0x15, 3	; 21
+						PORTC &= ~(1<<PC4);
+ 26e:	ac 98       	cbi	0x15, 4	; 21
+						uart_puts("SOURCE 30\r");
+ 270:	81 eb       	ldi	r24, 0xB1	; 177
+ 272:	90 e0       	ldi	r25, 0x00	; 0
+ 274:	35 df       	rcall	.-406    	; 0xe0 <uart_puts>
+					}
+					if (aktuelle_tasten_veraenderung & (1 << PINB3)  && (PORTC & (1<<PC1)) ){ //Source2
+ 276:	03 ff       	sbrs	r16, 3
+ 278:	08 c0       	rjmp	.+16     	; 0x28a <main+0x166>
+ 27a:	a9 9b       	sbis	0x15, 1	; 21
+ 27c:	06 c0       	rjmp	.+12     	; 0x28a <main+0x166>
+						PORTC |= (1<<PC3);
+ 27e:	ab 9a       	sbi	0x15, 3	; 21
+						PORTC &= ~(1<<PC2);
+ 280:	aa 98       	cbi	0x15, 2	; 21
+						PORTC &= ~(1<<PC4);
+ 282:	ac 98       	cbi	0x15, 4	; 21
+						uart_puts("SOURCE 21\r");
+ 284:	8c eb       	ldi	r24, 0xBC	; 188
+ 286:	90 e0       	ldi	r25, 0x00	; 0
+ 288:	2b df       	rcall	.-426    	; 0xe0 <uart_puts>
+					}
+					if (aktuelle_tasten_veraenderung & (1 << PINB4)  && (PORTC & (1<<PC1)) ){ //Source3
+ 28a:	04 ff       	sbrs	r16, 4
+ 28c:	08 c0       	rjmp	.+16     	; 0x29e <main+0x17a>
+ 28e:	a9 9b       	sbis	0x15, 1	; 21
+ 290:	06 c0       	rjmp	.+12     	; 0x29e <main+0x17a>
+						PORTC |= (1<<PC4);
+ 292:	ac 9a       	sbi	0x15, 4	; 21
+						PORTC &= ~(1<<PC2);
+ 294:	aa 98       	cbi	0x15, 2	; 21
+						PORTC &= ~(1<<PC3);
+ 296:	ab 98       	cbi	0x15, 3	; 21
+						uart_puts("SOURCE 41\r");
+ 298:	87 ec       	ldi	r24, 0xC7	; 199
+ 29a:	90 e0       	ldi	r25, 0x00	; 0
+ 29c:	21 df       	rcall	.-446    	; 0xe0 <uart_puts>
+					}
+					letzter_tasten_status = PINB;
+ 29e:	06 b3       	in	r16, 0x16	; 22
+															
+					if (flag_1ms) {
+ 2a0:	80 91 d2 00 	lds	r24, 0x00D2
+ 2a4:	88 23       	and	r24, r24
+ 2a6:	09 f4       	brne	.+2      	; 0x2aa <main+0x186>
+ 2a8:	64 cf       	rjmp	.-312    	; 0x172 <main+0x4e>
+							// Laufzeit der Tasks >100ms, Fehlersignalisierung
+							// PC4 auf HIGH, Programm stoppen
+							PORTC |= (1<<PC4);
+ 2aa:	ac 9a       	sbi	0x15, 4	; 21
+							wdt_enable(7);
+ 2ac:	2f e0       	ldi	r18, 0x0F	; 15
+ 2ae:	88 e1       	ldi	r24, 0x18	; 24
+ 2b0:	90 e0       	ldi	r25, 0x00	; 0
+ 2b2:	0f b6       	in	r0, 0x3f	; 63
+ 2b4:	f8 94       	cli
+ 2b6:	a8 95       	wdr
+ 2b8:	80 93 41 00 	sts	0x0041, r24
+ 2bc:	0f be       	out	0x3f, r0	; 63
+ 2be:	20 93 41 00 	sts	0x0041, r18
+ 2c2:	ff cf       	rjmp	.-2      	; 0x2c2 <main+0x19e>
+
+000002c4 <__vector_6>:
+		}
+    }
+}
+
+ISR (TIMER1_COMPA_vect)
+{
+ 2c4:	1f 92       	push	r1
+ 2c6:	0f 92       	push	r0
+ 2c8:	0f b6       	in	r0, 0x3f	; 63
+ 2ca:	0f 92       	push	r0
+ 2cc:	11 24       	eor	r1, r1
+ 2ce:	2f 93       	push	r18
+ 2d0:	8f 93       	push	r24
+ 2d2:	9f 93       	push	r25
+	if (flag_1ms) {
+ 2d4:	80 91 d2 00 	lds	r24, 0x00D2
+ 2d8:	88 23       	and	r24, r24
+ 2da:	69 f0       	breq	.+26     	; 0x2f6 <__vector_6+0x32>
+		// Laufzeit der Tasks >200ms, Fehlersignalisierung
+		// PC4 auf HIGH, Programm stoppen
+		PORTC |= (1<<PC4);
+ 2dc:	ac 9a       	sbi	0x15, 4	; 21
+		wdt_enable(7);
+ 2de:	2f e0       	ldi	r18, 0x0F	; 15
+ 2e0:	88 e1       	ldi	r24, 0x18	; 24
+ 2e2:	90 e0       	ldi	r25, 0x00	; 0
+ 2e4:	0f b6       	in	r0, 0x3f	; 63
+ 2e6:	f8 94       	cli
+ 2e8:	a8 95       	wdr
+ 2ea:	80 93 41 00 	sts	0x0041, r24
+ 2ee:	0f be       	out	0x3f, r0	; 63
+ 2f0:	20 93 41 00 	sts	0x0041, r18
+ 2f4:	ff cf       	rjmp	.-2      	; 0x2f4 <__vector_6+0x30>
+		while(1);
+	}
+	flag_1ms = 1;
+ 2f6:	81 e0       	ldi	r24, 0x01	; 1
+ 2f8:	80 93 d2 00 	sts	0x00D2, r24
+}
+ 2fc:	9f 91       	pop	r25
+ 2fe:	8f 91       	pop	r24
+ 300:	2f 91       	pop	r18
+ 302:	0f 90       	pop	r0
+ 304:	0f be       	out	0x3f, r0	; 63
+ 306:	0f 90       	pop	r0
+ 308:	1f 90       	pop	r1
+ 30a:	18 95       	reti
+
+0000030c <strcmp>:
+ 30c:	fb 01       	movw	r30, r22
+ 30e:	dc 01       	movw	r26, r24
+ 310:	8d 91       	ld	r24, X+
+ 312:	01 90       	ld	r0, Z+
+ 314:	80 19       	sub	r24, r0
+ 316:	01 10       	cpse	r0, r1
+ 318:	d9 f3       	breq	.-10     	; 0x310 <strcmp+0x4>
+ 31a:	99 0b       	sbc	r25, r25
+ 31c:	08 95       	ret
+
+0000031e <_exit>:
+ 31e:	f8 94       	cli
+
+00000320 <__stop_program>:
+ 320:	ff cf       	rjmp	.-2      	; 0x320 <__stop_program>
